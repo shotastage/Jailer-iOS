@@ -10,6 +10,7 @@
 		252EE11720CEDD9D0092688B /* Jailer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252EE10D20CEDD9D0092688B /* Jailer.framework */; };
 		252EE11C20CEDD9D0092688B /* JailerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252EE11B20CEDD9D0092688B /* JailerTests.swift */; };
 		252EE11E20CEDD9D0092688B /* Jailer.h in Headers */ = {isa = PBXBuildFile; fileRef = 252EE11020CEDD9D0092688B /* Jailer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		252EE17420CEDE8D0092688B /* Jailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252EE17320CEDE8D0092688B /* Jailer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		252EE11620CEDD9D0092688B /* JailerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JailerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		252EE11B20CEDD9D0092688B /* JailerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JailerTests.swift; sourceTree = "<group>"; };
 		252EE11D20CEDD9D0092688B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		252EE17320CEDE8D0092688B /* Jailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jailer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				252EE11020CEDD9D0092688B /* Jailer.h */,
 				252EE11120CEDD9D0092688B /* Info.plist */,
+				252EE17320CEDE8D0092688B /* Jailer.swift */,
 			);
 			path = Jailer;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				TargetAttributes = {
 					252EE10C20CEDD9D0092688B = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 0940;
 					};
 					252EE11520CEDD9D0092688B = {
 						CreatedOnToolsVersion = 9.4;
@@ -194,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				252EE17420CEDE8D0092688B /* Jailer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +344,7 @@
 		252EE12220CEDD9D0092688B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -348,6 +354,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Jailer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,6 +363,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tokyo.mixstage.Jailer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +372,7 @@
 		252EE12320CEDD9D0092688B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -373,6 +382,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Jailer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -389,6 +399,7 @@
 		252EE12520CEDD9D0092688B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8T4P9D4TB2;
 				INFOPLIST_FILE = JailerTests/Info.plist;
@@ -407,6 +418,7 @@
 		252EE12620CEDD9D0092688B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8T4P9D4TB2;
 				INFOPLIST_FILE = JailerTests/Info.plist;

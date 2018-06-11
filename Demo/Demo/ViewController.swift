@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Jailer
 
 class ViewController: UIViewController {
 
@@ -20,6 +21,37 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func checkJailbroken() {
+        if Surveillancer.isSecured() == .secured {
+            let alert: UIAlertController = UIAlertController(title: "Your device is safe!",     message: "Jailer report your device havn't been jailbroken.", preferredStyle:  UIAlertControllerStyle.alert)
+            
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: true, completion: nil)
+        } else {
+            let alert: UIAlertController = UIAlertController(title: "Your device is Hacked!", message: "Jailer report your device has been jailbroken!", preferredStyle:  UIAlertControllerStyle.alert)
+            
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
+    @IBAction func exitApp() {
+        exit(0)
+    }
 
 }
 
