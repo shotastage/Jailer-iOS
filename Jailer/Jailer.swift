@@ -44,14 +44,10 @@ open class Surveillancer {
             return .secured
         }
         
-        #if arch(i386) || arch(x86_64)
-        // This is a Simulator not an idevice
-        return .secured
-        #endif
-        
         
         if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
             fileManager.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
+            fileManager.fileExists(atPath: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
             fileManager.fileExists(atPath: "/bin/bash") ||
             fileManager.fileExists(atPath: "/usr/sbin/sshd") ||
             fileManager.fileExists(atPath: "/etc/apt") ||
@@ -64,6 +60,7 @@ open class Surveillancer {
         
         if openable(path: "/Applications/Cydia.app") ||
             openable(path: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
+            openable(path: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
             openable(path: "/bin/bash") ||
             openable(path: "/usr/sbin/sshd") ||
             openable(path: "/etc/apt") ||
@@ -81,6 +78,11 @@ open class Surveillancer {
         } catch {
             return .secured
         }
+        
+        #if arch(i386) || arch(x86_64)
+        // This is a Simulator not an idevice
+        return .secured
+        #endif
     }
     
     static func openable(path: String) -> Bool {
