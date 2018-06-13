@@ -45,7 +45,7 @@ open class Surveillancer {
     }
     
     
-    public static func fetchStatusFromServer(level: SurveillanceLevel = .normal) -> SurveillanceReport {
+    public static func fetchStatusFromServer() -> SurveillanceReport {
         
         // File Manager Instance
         let fileManager = FileManager.default
@@ -63,93 +63,38 @@ open class Surveillancer {
         }
         
         
-        if level == .week {
-            if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
-                fileManager.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib") {
-                return .injected
-            }
-            
-            if openable(path: "/Applications/Cydia.app") ||
-                openable(path: "/Library/MobileSubstrate/MobileSubstrate.dylib") {
-                return .injected
-            }
+
+        if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
+           fileManager.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
+           fileManager.fileExists(atPath: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
+           fileManager.fileExists(atPath: "/bin/bash") ||
+           fileManager.fileExists(atPath: "/usr/sbin/sshd") ||
+           fileManager.fileExists(atPath: "/etc/apt") ||
+           fileManager.fileExists(atPath: "/private/var/lib/apt/") ||
+           fileManager.fileExists(atPath: "/usr/bin/ssh") ||
+           fileManager.fileExists(atPath: "/private/var/lib/apt") {
+            return .injected
         }
-        
-        
-        if level == .normal {
-            if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
-                fileManager.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
-                fileManager.fileExists(atPath: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
-                fileManager.fileExists(atPath: "/bin/bash") ||
-                fileManager.fileExists(atPath: "/usr/sbin/sshd") ||
-                fileManager.fileExists(atPath: "/etc/apt") ||
-                fileManager.fileExists(atPath: "/private/var/lib/apt/") ||
-                fileManager.fileExists(atPath: "/usr/bin/ssh") ||
-                fileManager.fileExists(atPath: "/private/var/lib/apt") {
             
-                return .injected
-            }
-        
-            if openable(path: "/Applications/Cydia.app") ||
-                openable(path: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
-                openable(path: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
-                openable(path: "/bin/bash") ||
-                openable(path: "/usr/sbin/sshd") ||
-                openable(path: "/etc/apt") ||
-                openable(path: "/private/var/lib/apt/") ||
-                openable(path: "/usr/bin/ssh") {
-                
-                return .injected
-            }
-        
-            let path = "/private/" + NSUUID().uuidString
-        
-            do {
-                try "anyString".write(toFile: path, atomically: true, encoding: String.Encoding.utf8)
-                try fileManager.removeItem(atPath: path)
-                return .injected
-            } catch {
-                return .secured
-            }
+        if openable(path: "/Applications/Cydia.app") ||
+            openable(path: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
+            openable(path: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
+            openable(path: "/bin/bash") ||
+            openable(path: "/usr/sbin/sshd") ||
+            openable(path: "/etc/apt") ||
+            openable(path: "/private/var/lib/apt/") ||
+            openable(path: "/usr/bin/ssh") {
+            return .injected
         }
-        
-        
-        
-        if level == .strong {
-            if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
-                fileManager.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
-                fileManager.fileExists(atPath: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
-                fileManager.fileExists(atPath: "/bin/bash") ||
-                fileManager.fileExists(atPath: "/usr/sbin/sshd") ||
-                fileManager.fileExists(atPath: "/etc/apt") ||
-                fileManager.fileExists(atPath: "/private/var/lib/apt/") ||
-                fileManager.fileExists(atPath: "/usr/bin/ssh") ||
-                fileManager.fileExists(atPath: "/private/var/lib/apt") {
-                
-                return .injected
-            }
             
-            if openable(path: "/Applications/Cydia.app") ||
-                openable(path: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
-                openable(path: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
-                openable(path: "/bin/bash") ||
-                openable(path: "/usr/sbin/sshd") ||
-                openable(path: "/etc/apt") ||
-                openable(path: "/private/var/lib/apt/") ||
-                openable(path: "/usr/bin/ssh") {
-                
-                return .injected
-            }
+        let path = "/private/" + NSUUID().uuidString
             
-            let path = "/private/" + NSUUID().uuidString
-            
-            do {
-                try "anyString".write(toFile: path, atomically: true, encoding: String.Encoding.utf8)
-                try fileManager.removeItem(atPath: path)
-                return .injected
-            } catch {
-                return .secured
-            }
+        do {
+            try "anyString".write(toFile: path, atomically: true, encoding: String.Encoding.utf8)
+            try fileManager.removeItem(atPath: path)
+            return .injected
+        } catch {
+            return .secured
         }
     }
     

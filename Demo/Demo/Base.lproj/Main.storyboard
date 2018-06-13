@@ -28,6 +28,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLP-2K-wYa" customClass="JailerButton" customModule="Demo" customModuleProvider="target">
                                 <rect key="frame" x="61" y="523" width="253" height="68"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="68" id="7zW-9N-7EF"/>
                                     <constraint firstAttribute="height" constant="68" id="Svz-dI-Ba0"/>
                                 </constraints>
                                 <state key="normal" title="Check Jailbreak"/>
@@ -35,15 +36,29 @@
                                     <action selector="checkJailbroken" destination="BYZ-38-t0r" eventType="touchUpInside" id="ALZ-VG-quL"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press below button to check." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baJ-PQ-RqJ">
+                                <rect key="frame" x="45" y="93" width="285" height="174"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="174" id="4XU-Cf-Qcv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bkF-og-Spy" firstAttribute="top" secondItem="SLP-2K-wYa" secondAttribute="bottom" constant="26" id="2Ho-e4-J8f"/>
+                            <constraint firstItem="bkF-og-Spy" firstAttribute="top" secondItem="SLP-2K-wYa" secondAttribute="bottom" constant="26" id="7zc-DZ-8G7"/>
+                            <constraint firstItem="baJ-PQ-RqJ" firstAttribute="centerX" secondItem="SLP-2K-wYa" secondAttribute="centerX" id="E0O-9k-CzN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bkF-og-Spy" secondAttribute="bottom" constant="20" id="GUg-bm-8UT"/>
                             <constraint firstAttribute="bottom" secondItem="bkF-og-Spy" secondAttribute="bottom" constant="20" symbolic="YES" id="b5F-jK-VZd"/>
+                            <constraint firstItem="baJ-PQ-RqJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="73" id="dCo-tl-d6C"/>
                             <constraint firstItem="SLP-2K-wYa" firstAttribute="centerX" secondItem="bkF-og-Spy" secondAttribute="centerX" id="dgb-bo-lYK"/>
                             <constraint firstItem="SLP-2K-wYa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="61" id="ele-au-NVB"/>
                             <constraint firstItem="bkF-og-Spy" firstAttribute="top" secondItem="SLP-2K-wYa" secondAttribute="bottom" constant="26" id="guO-S5-hRg"/>
                             <constraint firstItem="SLP-2K-wYa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="503" id="iZ2-at-mXV"/>
+                            <constraint firstItem="baJ-PQ-RqJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="45" id="pVO-IM-WTQ"/>
                             <constraint firstItem="bkF-og-Spy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yIB-aE-Zea"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bkF-og-Spy" secondAttribute="bottom" constant="20" id="zpA-lP-7rz"/>
                         </constraints>
