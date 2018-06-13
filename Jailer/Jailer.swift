@@ -16,6 +16,7 @@ public enum SurveillanceReport {
     case secured
 }
 
+
 public enum SurveillanceLevel {
     case normal
     case week
