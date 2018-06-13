@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func checkJailbroken() {
-        if Surveillancer.isSecured() == .secured {
+        if Surveillancer.fetchStatusFromServer() == .secured {
             let alert: UIAlertController = UIAlertController(title: "Your device is safe!",     message: "Jailer report your device havn't been jailbroken.", preferredStyle:  UIAlertControllerStyle.alert)
             
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{

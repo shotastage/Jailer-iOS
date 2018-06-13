@@ -16,6 +16,12 @@ public enum SurveillanceReport {
     case secured
 }
 
+public enum SurveillanceLevel {
+    case normal
+    case week
+    case strong
+}
+
 
 open class Surveillancer {
     
@@ -32,11 +38,22 @@ open class Surveillancer {
     #endif
     
     
+    // Renaming
     public static func isSecured() -> SurveillanceReport {
-        
+        return fetchStatusFromServer()
+    }
+    
+    
+    public static func fetchStatusFromServer(level: SurveillanceLevel = .normal) -> SurveillanceReport {
         
         // File Manager Instance
         let fileManager = FileManager.default
+        
+    
+        #if arch(i386) || arch(x86_64)
+        // This is a Simulator not an idevice
+        return .secured
+        #endif
         
         
         guard let cydiaUrlScheme = NSURL(string: "cydia://package/com.example.package") else { return .secured }
@@ -45,44 +62,94 @@ open class Surveillancer {
         }
         
         
-        if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
-            fileManager.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
-            fileManager.fileExists(atPath: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
-            fileManager.fileExists(atPath: "/bin/bash") ||
-            fileManager.fileExists(atPath: "/usr/sbin/sshd") ||
-            fileManager.fileExists(atPath: "/etc/apt") ||
-            fileManager.fileExists(atPath: "/private/var/lib/apt/") ||
-            fileManager.fileExists(atPath: "/usr/bin/ssh") ||
-            fileManager.fileExists(atPath: "/private/var/lib/apt") {
+        if level == .week {
+            if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
+                fileManager.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib") {
+                return .injected
+            }
             
-            return .injected
+            if openable(path: "/Applications/Cydia.app") ||
+                openable(path: "/Library/MobileSubstrate/MobileSubstrate.dylib") {
+                return .injected
+            }
         }
         
-        if openable(path: "/Applications/Cydia.app") ||
-            openable(path: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
-            openable(path: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
-            openable(path: "/bin/bash") ||
-            openable(path: "/usr/sbin/sshd") ||
-            openable(path: "/etc/apt") ||
-            openable(path: "/private/var/lib/apt/") ||
-            openable(path: "/usr/bin/ssh") {
-            return .injected
+        
+        if level == .normal {
+            if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
+                fileManager.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
+                fileManager.fileExists(atPath: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
+                fileManager.fileExists(atPath: "/bin/bash") ||
+                fileManager.fileExists(atPath: "/usr/sbin/sshd") ||
+                fileManager.fileExists(atPath: "/etc/apt") ||
+                fileManager.fileExists(atPath: "/private/var/lib/apt/") ||
+                fileManager.fileExists(atPath: "/usr/bin/ssh") ||
+                fileManager.fileExists(atPath: "/private/var/lib/apt") {
+            
+                return .injected
+            }
+        
+            if openable(path: "/Applications/Cydia.app") ||
+                openable(path: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
+                openable(path: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
+                openable(path: "/bin/bash") ||
+                openable(path: "/usr/sbin/sshd") ||
+                openable(path: "/etc/apt") ||
+                openable(path: "/private/var/lib/apt/") ||
+                openable(path: "/usr/bin/ssh") {
+                
+                return .injected
+            }
+        
+            let path = "/private/" + NSUUID().uuidString
+        
+            do {
+                try "anyString".write(toFile: path, atomically: true, encoding: String.Encoding.utf8)
+                try fileManager.removeItem(atPath: path)
+                return .injected
+            } catch {
+                return .secured
+            }
         }
         
-        let path = "/private/" + NSUUID().uuidString
         
-        do {
-            try "anyString".write(toFile: path, atomically: true, encoding: String.Encoding.utf8)
-            try fileManager.removeItem(atPath: path)
-            return .injected
-        } catch {
-            return .secured
+        
+        if level == .strong {
+            if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
+                fileManager.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
+                fileManager.fileExists(atPath: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
+                fileManager.fileExists(atPath: "/bin/bash") ||
+                fileManager.fileExists(atPath: "/usr/sbin/sshd") ||
+                fileManager.fileExists(atPath: "/etc/apt") ||
+                fileManager.fileExists(atPath: "/private/var/lib/apt/") ||
+                fileManager.fileExists(atPath: "/usr/bin/ssh") ||
+                fileManager.fileExists(atPath: "/private/var/lib/apt") {
+                
+                return .injected
+            }
+            
+            if openable(path: "/Applications/Cydia.app") ||
+                openable(path: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
+                openable(path: "/Library/MobileSubstrate/DynamicLibraries/LibertySB.dylib") ||
+                openable(path: "/bin/bash") ||
+                openable(path: "/usr/sbin/sshd") ||
+                openable(path: "/etc/apt") ||
+                openable(path: "/private/var/lib/apt/") ||
+                openable(path: "/usr/bin/ssh") {
+                
+                return .injected
+            }
+            
+            let path = "/private/" + NSUUID().uuidString
+            
+            do {
+                try "anyString".write(toFile: path, atomically: true, encoding: String.Encoding.utf8)
+                try fileManager.removeItem(atPath: path)
+                return .injected
+            } catch {
+                return .secured
+            }
         }
-        
-        #if arch(i386) || arch(x86_64)
-        // This is a Simulator not an idevice
-        return .secured
-        #endif
     }
     
     static func openable(path: String) -> Bool {
