@@ -15,10 +15,11 @@ open class Investigators {
     }
     
     private func investigateGeneral() {
-        let path: String = "/etc/apt/sources.list.d/cydia.list"
+        
+        let aptSourceList: String = "/etc/apt/sources.list.d/cydia.list"
         let cmd: String = "dpkg -l"
         
-        if let path: String = Bundle.main.path(forResource: path, ofType: "list") {
+        if let path: String = Bundle.main.path(forResource: aptSourceList, ofType: "list") {
             
             do {
                 let content = try String(contentsOfFile: path)
@@ -31,6 +32,9 @@ open class Investigators {
         } else {
             print(".FileNotExist")
         }
+        
+        let task = Task.launchedTask(withLaunchPath: "/bin/ls", arguments: ["-la"])
+        task.waitUntilExit()
         
     }
     
