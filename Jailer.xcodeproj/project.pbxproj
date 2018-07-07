@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		252EE11720CEDD9D0092688B /* Jailer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252EE10D20CEDD9D0092688B /* Jailer.framework */; };
 		252EE11C20CEDD9D0092688B /* JailerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252EE11B20CEDD9D0092688B /* JailerTests.swift */; };
-		252EE11E20CEDD9D0092688B /* Jailer.h in Headers */ = {isa = PBXBuildFile; fileRef = 252EE11020CEDD9D0092688B /* Jailer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		252EE17420CEDE8D0092688B /* Jailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252EE17320CEDE8D0092688B /* Jailer.swift */; };
 		255935C820D1898200ECCE5C /* Investigators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255935C720D1898200ECCE5C /* Investigators.swift */; };
 /* End PBXBuildFile section */
@@ -26,7 +25,6 @@
 
 /* Begin PBXFileReference section */
 		252EE10D20CEDD9D0092688B /* Jailer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Jailer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		252EE11020CEDD9D0092688B /* Jailer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Jailer.h; sourceTree = "<group>"; };
 		252EE11120CEDD9D0092688B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		252EE11620CEDD9D0092688B /* JailerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JailerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		252EE11B20CEDD9D0092688B /* JailerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JailerTests.swift; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 		252EE10F20CEDD9D0092688B /* Jailer */ = {
 			isa = PBXGroup;
 			children = (
-				252EE11020CEDD9D0092688B /* Jailer.h */,
 				252EE11120CEDD9D0092688B /* Info.plist */,
 				252EE17320CEDE8D0092688B /* Jailer.swift */,
 				255935C720D1898200ECCE5C /* Investigators.swift */,
@@ -99,7 +96,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				252EE11E20CEDD9D0092688B /* Jailer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

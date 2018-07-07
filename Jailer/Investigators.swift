@@ -33,8 +33,8 @@ open class Investigators {
             print(".FileNotExist")
         }
         
-        let task = Task.launchedTask(withLaunchPath: "/bin/ls", arguments: ["-la"])
-        task.waitUntilExit()
+        //let task = umask.launchedTask(withLaunchPath: "/bin/ls", arguments: ["-la"])
+        //task.waitUntilExit()
         
     }
     

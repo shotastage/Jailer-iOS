@@ -8,7 +8,7 @@
 //  Copyright © 2018 Shota Shimazu. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 public enum SurveillanceReport {
